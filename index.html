@@ -27,6 +27,416 @@
       line-height: 1.6;
     }
 
+    /* ── ANALYSE (Verdana) ──────────────────────────────── */
+    .analyse {
+      font-family: Verdana, Geneva, sans-serif;
+    }
+
+    .analyse-hero {
+      background: #fff;
+      border-bottom: 3px solid var(--clay);
+      padding: 100px 60px;
+    }
+
+    .analyse-hero .chapter {
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 20px;
+    }
+
+    .analyse-hero h2 {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: bold;
+      color: var(--dark);
+      line-height: 1.2;
+      max-width: 800px;
+      margin-bottom: 20px;
+    }
+
+    .analyse-hero p {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 14px;
+      color: var(--taupe);
+      max-width: 620px;
+      line-height: 1.8;
+    }
+
+    .analyse-body {
+      background: #fafaf8;
+      padding: 80px 60px;
+    }
+
+    .analyse-body h3 {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--clay);
+      margin-bottom: 24px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--sand);
+    }
+
+    .analyse-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 1080px;
+      margin: 0 auto 60px;
+    }
+
+    .analyse-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1080px;
+      margin: 0 auto 60px;
+    }
+
+    .analyse-card {
+      background: #fff;
+      border: 1px solid #e8e2dc;
+      border-top: 3px solid var(--clay);
+      padding: 32px 28px;
+    }
+
+    .analyse-card h4 {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 13px;
+      font-weight: bold;
+      color: var(--stone);
+      margin-bottom: 14px;
+    }
+
+    .analyse-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .analyse-card ul li {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      color: var(--taupe);
+      padding: 6px 0;
+      border-bottom: 1px solid #f0ece8;
+      line-height: 1.6;
+    }
+
+    .analyse-card ul li:last-child { border-bottom: none; }
+
+    .analyse-card ul li::before {
+      content: '—';
+      color: var(--clay);
+      margin-right: 8px;
+      font-size: 11px;
+    }
+
+    .analyse-card p {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      color: var(--taupe);
+      line-height: 1.8;
+    }
+
+    .analyse-tag {
+      display: inline-block;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 3px;
+      margin-bottom: 12px;
+    }
+
+    .tag-primair  { background: var(--clay);  color: #fff; }
+    .tag-secundair { background: var(--sage); color: var(--stone); }
+    .tag-koper    { background: var(--sand);  color: var(--stone); }
+    .tag-gap      { background: var(--dark);  color: var(--cream); }
+
+    .persona-card {
+      background: #fff;
+      border: 1px solid #e8e2dc;
+      padding: 36px;
+    }
+
+    .persona-avatar {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+
+    .persona-card h4 {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 15px;
+      font-weight: bold;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .persona-card .persona-meta {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: var(--clay);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .persona-card p {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      color: var(--taupe);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .persona-card .pijnpunt {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: var(--stone);
+      background: var(--sand);
+      padding: 10px 14px;
+      margin-bottom: 6px;
+      border-left: 3px solid var(--clay);
+    }
+
+    .persona-card .huddi-moment {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      font-style: italic;
+      color: var(--clay);
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--sand);
+      line-height: 1.7;
+    }
+
+    .concurrentie-table {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto 48px;
+      border-collapse: collapse;
+      font-family: Verdana, Geneva, sans-serif;
+    }
+
+    .concurrentie-table th {
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--taupe);
+      text-align: left;
+      padding: 12px 16px;
+      background: var(--sand);
+      border-bottom: 2px solid var(--clay);
+    }
+
+    .concurrentie-table td {
+      padding: 14px 16px;
+      font-size: 12px;
+      color: var(--stone);
+      border-bottom: 1px solid #ede8e2;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .concurrentie-table tr:nth-child(even) td { background: #fafaf8; }
+
+    .toon-badge {
+      display: inline-block;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 2px;
+      font-weight: bold;
+    }
+
+    .toon-klinisch  { background: #dce8f0; color: #3a6080; }
+    .toon-lifestyle { background: #d4ead8; color: #2d6040; }
+    .toon-emotioneel { background: #f0e4d4; color: #8a5020; }
+
+    .marktgat-block {
+      background: var(--dark);
+      padding: 80px 60px;
+      font-family: Verdana, Geneva, sans-serif;
+    }
+
+    .marktgat-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .marktgat-block h3 {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 24px;
+    }
+
+    .marktgat-block .quote {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: clamp(18px, 2.5vw, 28px);
+      color: var(--sand);
+      line-height: 1.5;
+      max-width: 800px;
+      margin-bottom: 48px;
+      font-weight: bold;
+    }
+
+    .spectrum {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      align-items: stretch;
+      margin-bottom: 0;
+    }
+
+    .spectrum-side {
+      background: rgba(255,255,255,0.04);
+      padding: 32px;
+    }
+
+    .spectrum-side h4 {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(245,240,235,0.4);
+      margin-bottom: 16px;
+    }
+
+    .spectrum-side ul {
+      list-style: none;
+    }
+
+    .spectrum-side ul li {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      color: rgba(245,240,235,0.6);
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .spectrum-side ul li:last-child { border-bottom: none; }
+
+    .spectrum-side ul li::before {
+      content: '·';
+      color: var(--clay);
+      margin-right: 8px;
+    }
+
+    .spectrum-middle {
+      background: var(--clay);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-width: 200px;
+    }
+
+    .spectrum-middle .logo-preview {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 28px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+
+    .spectrum-middle p {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* ── TRANSITIE ──────────────────────────────────────── */
+    .transitie {
+      background: var(--clay);
+      padding: 120px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .transitie::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      top: -100px; right: -100px;
+    }
+
+    .transitie::after {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      bottom: -80px; left: -80px;
+    }
+
+    .transitie .pre-label {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 32px;
+    }
+
+    .transitie h2 {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(42px, 7vw, 88px);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+
+    .transitie .sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      max-width: 480px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
+
+    .transitie .font-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
     /* ── COVER ─────────────────────────────────────────── */
     .cover {
       background: var(--sand);
@@ -769,6 +1179,237 @@
     <span>Max — Marketing Agent</span>
     <span>Vertrouwelijk</span>
   </div>
+</div>
+
+<!-- ══ DOELGROEP ══════════════════════════════════════════ -->
+<div class="analyse">
+
+  <div class="analyse-hero">
+    <div style="max-width:1080px; margin:0 auto;">
+      <div class="chapter">Hoofdstuk 01 — Doelgroepanalyse</div>
+      <h2>Wie is Huddi voor?<br>En wie koopt het?</h2>
+      <p>De koper is niet altijd de gebruiker. Dat onderscheid is cruciaal voor hoe Huddi communiceert — en aan wie.</p>
+    </div>
+  </div>
+
+  <div class="analyse-body">
+    <div style="max-width:1080px; margin:0 auto;">
+
+      <h3>Doelgroepsegmenten</h3>
+      <div class="analyse-grid-3" style="margin-bottom:60px;">
+        <div class="analyse-card">
+          <span class="analyse-tag tag-primair">Primair — Gebruiker</span>
+          <h4>Kinderen 4–10 jaar</h4>
+          <ul>
+            <li>Behoefte aan rust en geborgenheid</li>
+            <li>Bedtijdroutine, slaap, kalmte</li>
+            <li>Geen koopintentie — maar wél de ervaring</li>
+            <li>Steden en randstad, brede sociaaleconomische groep</li>
+          </ul>
+        </div>
+        <div class="analyse-card">
+          <span class="analyse-tag tag-secundair">Secundair — Gebruiker</span>
+          <h4>Jongvolwassenen 18–40 jaar</h4>
+          <ul>
+            <li>Bewust bezig met mentaal welzijn en zelfzorg</li>
+            <li>Koopt voor zichzelf óf als cadeau</li>
+            <li>Stedelijk, hoger opgeleid, actief op social</li>
+            <li>Gevoelig voor merkgevoel en esthetiek</li>
+          </ul>
+        </div>
+        <div class="analyse-card">
+          <span class="analyse-tag tag-koper">Koper — Beslisser</span>
+          <h4>Ouders, partners, cadeaukopers</h4>
+          <ul>
+            <li>Ouders 28–42 jaar — kopen voor kind</li>
+            <li>Partners — cadeau voor volwassene</li>
+            <li>Familie bij verjaardagen, feestdagen</li>
+            <li>Willen iets geven waar ze trots op zijn</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Persona's</h3>
+      <div class="analyse-grid-2">
+
+        <div class="persona-card">
+          <div class="persona-avatar" style="background: var(--clay);">L</div>
+          <h4>Lisa, 34 jaar</h4>
+          <div class="persona-meta">Moeder · Randstad · Marketeer (parttime)</div>
+          <p>Lisa heeft twee kinderen (5 en 8 jaar) en koopt bewust — liever minder maar beter. Ze volgt Dutch interior en mama-accounts op Instagram. Ze zoekt producten met een verhaal, niet met een sticker "aanbevolen door therapeuten".</p>
+          <div class="pijnpunt">Wil haar kind helpen tot rust te komen, maar niet dat het therapeutisch aanvoelt</div>
+          <div class="pijnpunt">Heeft al twee generieke knuffels van bol.com die nooit gebruikt worden</div>
+          <div class="pijnpunt">Wil iets cadeau geven waar ze zelf ook trots op is</div>
+          <div class="huddi-moment">Ze vindt Huddi via een Instagram Reel. De stijl voelt anders — niet medisch. Ze bestelt het aapje voor haar dochter, die het elke avond meeneemt naar bed.</div>
+        </div>
+
+        <div class="persona-card">
+          <div class="persona-avatar" style="background: var(--sage); color: var(--stone);">S</div>
+          <h4>Sanne, 27 jaar</h4>
+          <div class="persona-meta">Zorgmedewerker · Amsterdam · Woont alleen</div>
+          <p>Sanne werkt fulltime in de zorg en is bewust bezig met herstel en rust. Ze heeft al een verzwaard dekbed maar zoekt iets compacters voor overdag. Koopt liever bij een merk met gevoel dan via een marktplaats.</p>
+          <div class="pijnpunt">Bestaand aanbod voelt te "ziek" of juist te kinderachtig</div>
+          <div class="pijnpunt">Wil iets dat past in haar interieur én haar welzijn ondersteunt</div>
+          <div class="pijnpunt">Twijfelt: is dit iets voor mij als volwassene?</div>
+          <div class="huddi-moment">Ze stuit op Huddi via TikTok. Het merk voelt volwassen. Ze bestelt de luiaard — deels voor zichzelf, deels als cadeau-idee voor haar neefje.</div>
+        </div>
+
+      </div>
+
+      <div class="analyse-card" style="border-top-color: var(--dark); background: var(--sand); margin-top:0;">
+        <h4>Sleutelinzicht</h4>
+        <p style="font-size:13px; color: var(--stone); line-height:1.8;">De koper is niet altijd de gebruiker — maar de koper beslist op basis van <em>merkgevoel</em>. Als Huddi vertrouwen en verlangen wekt bij Lisa en Sanne, koopt het kind of de volwassene er automatisch in mee. Communiceer dus primair naar de beslisser, niet naar de gebruiker.</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ CONCURRENTIE ═══════════════════════════════════════ -->
+<div class="analyse">
+
+  <div class="analyse-hero" style="background: #f7f4f0;">
+    <div style="max-width:1080px; margin:0 auto;">
+      <div class="chapter">Hoofdstuk 02 — Concurrentieanalyse</div>
+      <h2>De markt is gesplitst.<br>En dat is Huddi's kans.</h2>
+      <p>Bestaande spelers kiezen óf voor klinisch/probleemgericht óf voor lifestyle/wellness. Niemand combineert warm, serieus en toegankelijk in één merk — voor zowel kinderen als volwassenen.</p>
+    </div>
+  </div>
+
+  <div class="analyse-body" style="background: #f7f4f0;">
+    <div style="max-width:1080px; margin:0 auto;">
+
+      <h3>Directe concurrenten</h3>
+      <table class="concurrentie-table">
+        <thead>
+          <tr>
+            <th>Merk</th>
+            <th>Land</th>
+            <th>Prijs</th>
+            <th>Communicatietoon</th>
+            <th>Kanalen</th>
+            <th>Zwakte</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Lotgenootje</strong></td>
+            <td>🇳🇱 NL</td>
+            <td>Premium</td>
+            <td><span class="toon-badge toon-emotioneel">Probleemgericht</span></td>
+            <td>DTC, bol.com</td>
+            <td>Zwaar merkgevoel, weinig lifestyle-signaal</td>
+          </tr>
+          <tr>
+            <td><strong>Brease</strong></td>
+            <td>🇩🇰 DK</td>
+            <td>€59–74</td>
+            <td><span class="toon-badge toon-klinisch">Wetenschappelijk</span></td>
+            <td>DTC, Amazon</td>
+            <td>Koud en afstandelijk, geen warmte</td>
+          </tr>
+          <tr>
+            <td><strong>Warmies</strong></td>
+            <td>🌍 INT</td>
+            <td>Middenpremium</td>
+            <td><span class="toon-badge toon-emotioneel">Nostalgisch</span></td>
+            <td>DTC, retail, social</td>
+            <td>Geen sterke merkidentiteit, breed maar oppervlakkig</td>
+          </tr>
+          <tr>
+            <td><strong>Bearaby</strong></td>
+            <td>🇺🇸 US</td>
+            <td>€95+</td>
+            <td><span class="toon-badge toon-lifestyle">Design/Wellness</span></td>
+            <td>DTC</td>
+            <td>Niet geschikt voor kinderen, te hoge prijs</td>
+          </tr>
+          <tr>
+            <td><strong>Hugimals</strong></td>
+            <td>🇺🇸 US</td>
+            <td>$67–68</td>
+            <td><span class="toon-badge toon-klinisch">Klinisch</span></td>
+            <td>DTC, Amazon, Target</td>
+            <td>Weinig merkidentiteit, generiek</td>
+          </tr>
+          <tr>
+            <td><strong>Moon Pals</strong></td>
+            <td>🇺🇸 US</td>
+            <td>$95</td>
+            <td><span class="toon-badge toon-lifestyle">Lifestyle/Fun</span></td>
+            <td>DTC, Amazon, Walmart</td>
+            <td>Geen Europese aanwezigheid, beperkte diepgang</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Twee kampen — één gat</h3>
+      <div class="analyse-grid-2" style="margin-bottom:0;">
+        <div class="analyse-card" style="border-top-color: #3a6080;">
+          <h4>Kamp A — Klinisch &amp; probleemgericht</h4>
+          <ul>
+            <li>Lotgenootje, Brease, Hugimals</li>
+            <li>Focus op angst, ADHD, autisme, slaapproblemen</li>
+            <li>Communicatie vanuit kwetsbaarheid en symptoom</li>
+            <li>Product als hulpmiddel — niet als keuze</li>
+            <li>Werkt voor een specifieke doelgroep, sluit anderen uit</li>
+          </ul>
+        </div>
+        <div class="analyse-card" style="border-top-color: #2d6040;">
+          <h4>Kamp B — Lifestyle &amp; wellness</h4>
+          <ul>
+            <li>Bearaby, Moon Pals, Warmies</li>
+            <li>Focus op design, zelfzorg, esthetiek</li>
+            <li>Mist warmte en toegankelijkheid voor kinderen</li>
+            <li>Prijs hoog of merkidentiteit oppervlakkig</li>
+            <li>Geen Europees merk met sterke positie</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="marktgat-block">
+    <div class="marktgat-inner">
+      <h3>Het marktgat</h3>
+      <div class="quote">"Geen enkel merk combineert warm, serieus en toegankelijk — voor zowel het kind als de volwassene, in één coherente merkbeleving."</div>
+      <div class="spectrum">
+        <div class="spectrum-side">
+          <h4>Klinisch kamp</h4>
+          <ul>
+            <li>Probleemgericht taalgebruik</li>
+            <li>Medische validatie voorop</li>
+            <li>Beperkte doelgroep</li>
+            <li>Geen lifestyle-signaal</li>
+          </ul>
+        </div>
+        <div class="spectrum-middle">
+          <div class="logo-preview">Huddi</div>
+          <p>Warm · Serieus<br>Toegankelijk<br>Lifestyle + Functie</p>
+        </div>
+        <div class="spectrum-side" style="text-align:right;">
+          <h4>Lifestyle kamp</h4>
+          <ul style="text-align:right;">
+            <li>Hoge prijs of oppervlakkig</li>
+            <li>Niet voor kinderen</li>
+            <li>Geen Europese speler</li>
+            <li>Mist warmte en diepgang</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ TRANSITIE ══════════════════════════════════════════ -->
+<div class="transitie">
+  <div class="pre-label">Analyse voltooid — nu het voorstel</div>
+  <h2>Huddi.</h2>
+  <p class="sub">Wat als comfort geen probleem hoeft te zijn om op te lossen — maar een gevoel om naar te verlangen?</p>
+  <div class="font-note">Vanaf hier: merkidentiteit in Nunito &amp; DM Sans</div>
 </div>
 
 <!-- ══ POSITIONING ════════════════════════════════════════ -->
