@@ -9,14 +9,16 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --sand:   #E8DDD0;
-      --clay:   #C4A98A;
-      --taupe:  #8C7B6E;
-      --cream:  #F5F0EB;
-      --sage:   #A8B5A2;
-      --stone:  #6B6259;
-      --blush:  #D4B5A8;
-      --dark:   #3A3330;
+      --sand:       #E8DDD0;
+      --clay:       #C4A98A;
+      --taupe:      #8C7B6E;
+      --cream:      #F5F0EB;
+      --sage:       #A8B5A2;
+      --stone:      #6B6259;
+      --blush:      #D4B5A8;
+      --dark:       #3A3330;
+      --verdigris:  #4A7A70;
+      --amber:      #C4860A;
     }
 
     body {
@@ -1477,6 +1479,23 @@
     </div>
   </div>
 
+  <!-- CTA swatches -->
+  <div style="margin-bottom:48px;">
+    <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--clay); margin-bottom:16px;">CTA — Het vleugje magie</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; border-radius:16px; overflow:hidden; box-shadow: 0 8px 40px rgba(58,51,48,0.10);">
+      <div class="swatch light-text" style="background:#4A7A70; min-height:180px; justify-content:flex-end;">
+        <div class="swatch-tag" style="opacity:0.6;">CTA Primair</div>
+        <div class="swatch-name" style="font-size:16px;">Verdigris</div>
+        <div class="swatch-hex">#4A7A70</div>
+      </div>
+      <div class="swatch light-text" style="background:#C4860A; min-height:180px; justify-content:flex-end;">
+        <div class="swatch-tag" style="opacity:0.6;">CTA Secundair</div>
+        <div class="swatch-name" style="font-size:16px;">Amber</div>
+        <div class="swatch-hex">#C4860A</div>
+      </div>
+    </div>
+  </div>
+
   <div class="color-usage">
     <div class="usage-card">
       <div class="usage-dot" style="background:#E8DDD0; border: 1px solid #C4A98A33;"></div>
@@ -1499,20 +1518,59 @@
       <p>Seizoenscampagnes (herfst/winter), warmtefunctie, cadeaumarketing.</p>
     </div>
     <div class="usage-card">
-      <div class="usage-dot" style="background:#3A3330;"></div>
-      <h4>Warm Stone</h4>
-      <p>Lopende tekst, koppen op lichte achtergrond. Nooit zwart (#000) — altijd deze warme tint.</p>
+      <div class="usage-dot" style="background:#4A7A70;"></div>
+      <h4>Verdigris — CTA Primair</h4>
+      <p>Hoofdknop, primaire actie, "Bestel nu". Springt uit het aardpalet zonder te schreeuwen.</p>
     </div>
-    <div class="usage-card" style="background: var(--sand);">
-      <div style="display:flex; gap:8px; margin-bottom:16px;">
-        <div style="width:20px;height:20px;border-radius:50%;background:#3498db;"></div>
-        <div style="width:20px;height:20px;border-radius:50%;background:#9b59b6;"></div>
-        <div style="width:20px;height:20px;border-radius:50%;background:#e74c3c;"></div>
-      </div>
-      <h4 style="color: var(--taupe)">Vermijd</h4>
-      <p>Koud pastelblauw, lavendel, helder rood, neon. Te medisch of te kinderachtig.</p>
+    <div class="usage-card">
+      <div class="usage-dot" style="background:#C4860A;"></div>
+      <h4>Amber — CTA Secundair</h4>
+      <p>Secondaire actie, highlights, seizoensbanners, urgentie-elementen. Het "gouden uur" gevoel.</p>
     </div>
   </div>
+</section>
+
+<!-- ══ MAGIE ═══════════════════════════════════════════════ -->
+<section style="background: var(--dark); padding: 100px 60px;">
+  <div class="section-label" style="color: var(--clay);">01b — Het vleugje magie</div>
+  <h2 style="color: var(--sand); margin-bottom: 16px;">Onverwacht, maar precies goed.</h2>
+  <p style="color: rgba(245,240,235,0.5); font-size:16px; font-weight:300; max-width:640px; margin-bottom:60px; line-height:1.7;">Het aardpalet is de wereld van Huddi — warm, rustig, thuis. De CTA-kleuren zijn het moment dat iets vraagt om actie. Ze vallen op, maar breken niets. Ze voelen alsof ze er altijd al hadden moeten zijn.</p>
+
+  <!-- Button demos -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; max-width:900px; margin-bottom:64px;">
+
+    <div style="background:var(--cream); border-radius:20px; padding:40px;">
+      <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--taupe); margin-bottom:24px;">Op lichte achtergrond</p>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <button style="background:#4A7A70; color:#fff; border:none; border-radius:50px; padding:16px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left; letter-spacing:0.3px;">Ontdek Huddi →</button>
+        <button style="background:#C4860A; color:#fff; border:none; border-radius:50px; padding:16px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left; letter-spacing:0.3px;">Bestel voor Sinterklaas →</button>
+        <button style="background:transparent; color:#4A7A70; border:2px solid #4A7A70; border-radius:50px; padding:14px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left;">Meer over Huddi</button>
+      </div>
+    </div>
+
+    <div style="background:#3A3330; border-radius:20px; padding:40px;">
+      <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--clay); margin-bottom:24px;">Op donkere achtergrond</p>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <button style="background:#4A7A70; color:#fff; border:none; border-radius:50px; padding:16px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left; letter-spacing:0.3px;">Ontdek Huddi →</button>
+        <button style="background:#C4860A; color:#fff; border:none; border-radius:50px; padding:16px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left; letter-spacing:0.3px;">Bestel voor Sinterklaas →</button>
+        <button style="background:transparent; color:rgba(245,240,235,0.7); border:2px solid rgba(245,240,235,0.25); border-radius:50px; padding:14px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left;">Meer over Huddi</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Magic rationale -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:900px;">
+    <div style="background:rgba(74,122,112,0.15); border-left:3px solid #4A7A70; border-radius:0 12px 12px 0; padding:32px;">
+      <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#4A7A70; margin-bottom:12px;">Verdigris — Waarom magie?</p>
+      <p style="font-size:13px; color:rgba(245,240,235,0.65); line-height:1.8;">Als oud koper dat door weer en wind zijn kleur heeft gekregen. Warm maar onverwacht. Geen enkel concurrerend merk zit in deze kleurruimte. Het voelt diep, organisch en net iets verrassender dan je verwacht — precies het gevoel dat Huddi wil oproepen.</p>
+    </div>
+    <div style="background:rgba(196,134,10,0.15); border-left:3px solid #C4860A; border-radius:0 12px 12px 0; padding:32px;">
+      <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#C4860A; margin-bottom:12px;">Amber — Waarom magie?</p>
+      <p style="font-size:13px; color:rgba(245,240,235,0.65); line-height:1.8;">Het gouden uur in een kleur. Warm, rijk en urgent zonder agressief te zijn. Past perfect bij de verwarmingsfunctie van Huddi en bij campagnemoment zoals Sinterklaas en Kerst. Het accent dat de rest van het palet doet opleven.</p>
+    </div>
+  </div>
+
 </section>
 
 <div class="divider"></div>
