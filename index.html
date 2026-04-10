@@ -9,16 +9,25 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --sand:       #E8DDD0;
-      --clay:       #C4A98A;
-      --taupe:      #8C7B6E;
-      --cream:      #F5F0EB;
-      --sage:       #A8B5A2;
-      --stone:      #6B6259;
-      --blush:      #D4B5A8;
-      --dark:       #3A3330;
-      --verdigris:  #4A7A70;
-      --amber:      #C4860A;
+      /* Basis — Natuur & Warmte */
+      --cream:      #F0EDE6;
+      --sand:       #D5C4B0;
+      --mint:       #DCF0E5;
+      --sage:       #7BA690;
+      --forest:     #3E6B50;
+      /* Anker — Vertrouwen & Diepte */
+      --dusty-blue: #6E8EA4;
+      --slate:      #2F3E4A;
+      /* Accenten — Het vleugje magie */
+      --toutch:     #E59178;
+      --magic:      #9B8DBF;
+      --spark:      #CFC15A;
+      /* Aliassen voor bestaande code */
+      --taupe:      #978880;
+      --stone:      #7BA690;
+      --dark:       #2F3E4A;
+      --clay:       #7BA690;
+      --blush:      #E59178;
     }
 
     body {
@@ -1175,6 +1184,7 @@
 <div class="cover">
   <div class="cover-tag">Design Direction Document — v1.0</div>
   <h1>Hud<span>di</span></h1>
+  <p style="font-family:'Nunito',sans-serif; font-size:clamp(18px,2.5vw,26px); font-weight:300; color:#3E6B50; letter-spacing:0.5px; margin-bottom:16px;">Zacht van buiten. Sterk van binnen.</p>
   <p class="cover-sub">Merkidentiteit voor een merk dat comfort vertaalt naar gevoel — niet naar probleem.</p>
   <div class="cover-meta">
     <span>April 2026</span>
@@ -1407,11 +1417,11 @@
 </div>
 
 <!-- ══ TRANSITIE ══════════════════════════════════════════ -->
-<div class="transitie">
+<div class="transitie" style="background:#3E6B50;">
   <div class="pre-label">Analyse voltooid — nu het voorstel</div>
-  <h2>Huddi.</h2>
-  <p class="sub">Wat als comfort geen probleem hoeft te zijn om op te lossen — maar een gevoel om naar te verlangen?</p>
-  <div class="font-note">Vanaf hier: merkidentiteit in Nunito &amp; DM Sans</div>
+  <h2 style="color:#F0EDE6;">Huddi.</h2>
+  <p class="sub" style="color:rgba(220,240,229,0.7);">Zacht van buiten. Sterk van binnen.<br>Wat als comfort geen probleem hoeft te zijn — maar een gevoel om naar te verlangen?</p>
+  <div class="font-note" style="color:rgba(220,240,229,0.35);">Vanaf hier: merkidentiteit in Nunito &amp; DM Sans</div>
 </div>
 
 <!-- ══ POSITIONING ════════════════════════════════════════ -->
@@ -1439,135 +1449,169 @@
 <!-- ══ COLOR PALETTE ══════════════════════════════════════ -->
 <section class="palette-section">
   <div class="section-label">01 — Kleurpalet</div>
-  <h2>Warm minimalism.<br>Aarde boven klinisch.</h2>
+  <h2>Natuur als basis.<br>Magie als accent.</h2>
+  <p style="color:var(--taupe); font-size:15px; font-weight:300; max-width:600px; margin-bottom:48px; line-height:1.7;">Gebaseerd op jouw huisstijlconcept. De groenfamilie geeft het merk zijn karakter — van licht en open naar diep en vertrouwd. De ankerkleuren voegen gewicht toe. De drie accenten zijn het vleugje magie.</p>
 
-  <div class="palette-grid">
-    <div class="swatch dark-text" style="background:#F5F0EB">
-      <div class="swatch-tag">Primair</div>
-      <div class="swatch-name">Cream White</div>
-      <div class="swatch-hex">#F5F0EB</div>
+  <!-- Basis: natuur & warmte -->
+  <p style="font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--sage); margin-bottom:12px;">Basis — Natuur &amp; Warmte</p>
+  <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:0; border-radius:16px; overflow:hidden; box-shadow:0 8px 40px rgba(47,62,74,0.08); margin-bottom:8px;">
+    <div class="swatch dark-text" style="background:#F0EDE6; aspect-ratio:1/2.4;">
+      <div class="swatch-tag">Liefde</div>
+      <div class="swatch-name">Cream</div>
+      <div class="swatch-hex">#F0EDE6</div>
     </div>
-    <div class="swatch dark-text" style="background:#E8DDD0">
-      <div class="swatch-tag">Primair</div>
-      <div class="swatch-name">Warm Sand</div>
-      <div class="swatch-hex">#E8DDD0</div>
+    <div class="swatch dark-text" style="background:#D5C4B0; aspect-ratio:1/2.4;">
+      <div class="swatch-tag">Rust</div>
+      <div class="swatch-name">Sand</div>
+      <div class="swatch-hex">#D5C4B0</div>
     </div>
-    <div class="swatch dark-text" style="background:#C4A98A">
-      <div class="swatch-tag">Primair</div>
-      <div class="swatch-name">Dusty Clay</div>
-      <div class="swatch-hex">#C4A98A</div>
+    <div class="swatch dark-text" style="background:#DCF0E5; aspect-ratio:1/2.4;">
+      <div class="swatch-tag">Zelfverzekerd</div>
+      <div class="swatch-name">Mint</div>
+      <div class="swatch-hex">#DCF0E5</div>
     </div>
-    <div class="swatch light-text" style="background:#8C7B6E">
-      <div class="swatch-tag">Primair</div>
-      <div class="swatch-name">Soft Taupe</div>
-      <div class="swatch-hex">#8C7B6E</div>
+    <div class="swatch light-text" style="background:#7BA690; aspect-ratio:1/2.4;">
+      <div class="swatch-tag">Geluk</div>
+      <div class="swatch-name">Sage</div>
+      <div class="swatch-hex">#7BA690</div>
     </div>
-    <div class="swatch dark-text" style="background:#A8B5A2">
-      <div class="swatch-tag">Secundair</div>
-      <div class="swatch-name">Sage Mist</div>
-      <div class="swatch-hex">#A8B5A2</div>
-    </div>
-    <div class="swatch dark-text" style="background:#D4B5A8">
-      <div class="swatch-tag">Secundair</div>
-      <div class="swatch-name">Blush Dusk</div>
-      <div class="swatch-hex">#D4B5A8</div>
-    </div>
-    <div class="swatch light-text" style="background:#3A3330">
-      <div class="swatch-tag">Tekst</div>
-      <div class="swatch-name">Warm Stone</div>
-      <div class="swatch-hex">#3A3330</div>
+    <div class="swatch light-text" style="background:#3E6B50; aspect-ratio:1/2.4;">
+      <div class="swatch-tag">Veiligheid</div>
+      <div class="swatch-name">Forest</div>
+      <div class="swatch-hex">#3E6B50</div>
     </div>
   </div>
 
-  <!-- CTA swatches -->
-  <div style="margin-bottom:48px;">
-    <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--clay); margin-bottom:16px;">CTA — Het vleugje magie</p>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; border-radius:16px; overflow:hidden; box-shadow: 0 8px 40px rgba(58,51,48,0.10);">
-      <div class="swatch light-text" style="background:#4A7A70; min-height:180px; justify-content:flex-end;">
-        <div class="swatch-tag" style="opacity:0.6;">CTA Primair</div>
-        <div class="swatch-name" style="font-size:16px;">Verdigris</div>
-        <div class="swatch-hex">#4A7A70</div>
-      </div>
-      <div class="swatch light-text" style="background:#C4860A; min-height:180px; justify-content:flex-end;">
-        <div class="swatch-tag" style="opacity:0.6;">CTA Secundair</div>
-        <div class="swatch-name" style="font-size:16px;">Amber</div>
-        <div class="swatch-hex">#C4860A</div>
-      </div>
+  <!-- Anker -->
+  <p style="font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#6E8EA4; margin-bottom:12px; margin-top:32px;">Anker — Vertrouwen &amp; Diepte</p>
+  <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:0; border-radius:16px; overflow:hidden; box-shadow:0 8px 40px rgba(47,62,74,0.08); margin-bottom:8px;">
+    <div class="swatch light-text" style="background:#6E8EA4; min-height:120px;">
+      <div class="swatch-tag">Vertrouwen · Controle</div>
+      <div class="swatch-name">Dusty Blue</div>
+      <div class="swatch-hex">#6E8EA4</div>
+    </div>
+    <div class="swatch light-text" style="background:#2F3E4A; min-height:120px;">
+      <div class="swatch-tag">Zorg · Kracht</div>
+      <div class="swatch-name">Slate</div>
+      <div class="swatch-hex">#2F3E4A</div>
+    </div>
+  </div>
+
+  <!-- Accenten -->
+  <p style="font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#9B8DBF; margin-bottom:12px; margin-top:32px;">Accenten — Het vleugje magie</p>
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-radius:16px; overflow:hidden; box-shadow:0 8px 40px rgba(47,62,74,0.08); margin-bottom:48px;">
+    <div class="swatch dark-text" style="background:#E59178; min-height:140px;">
+      <div class="swatch-tag">Warmte · Aanraking</div>
+      <div class="swatch-name">Toutch</div>
+      <div class="swatch-hex">#E59178</div>
+    </div>
+    <div class="swatch light-text" style="background:#9B8DBF; min-height:140px;">
+      <div class="swatch-tag">Magie · Verwondering</div>
+      <div class="swatch-name">Magic ✦</div>
+      <div class="swatch-hex">#9B8DBF</div>
+    </div>
+    <div class="swatch dark-text" style="background:#CFC15A; min-height:140px;">
+      <div class="swatch-tag">Energie · CTA</div>
+      <div class="swatch-name">Spark</div>
+      <div class="swatch-hex">#CFC15A</div>
     </div>
   </div>
 
   <div class="color-usage">
     <div class="usage-card">
-      <div class="usage-dot" style="background:#E8DDD0; border: 1px solid #C4A98A33;"></div>
-      <h4>Warm Sand + Cream White</h4>
-      <p>Achtergronden, webshop, verpakking, rustmomenten in content. De wereld van Huddi.</p>
+      <div class="usage-dot" style="background:#F0EDE6; border:1px solid #D5C4B033;"></div>
+      <h4>Cream + Sand</h4>
+      <p>Achtergronden, webshop, verpakking. De stille wereld van Huddi. Rust en ruimte.</p>
     </div>
     <div class="usage-card">
-      <div class="usage-dot" style="background:#C4A98A;"></div>
-      <h4>Dusty Clay</h4>
-      <p>Merkkleur. Logo, buttons, accenten, koppen. De herkenbare handtekening van Huddi.</p>
+      <div class="usage-dot" style="background:#DCF0E5;"></div>
+      <h4>Mint</h4>
+      <p>Lichte secties, hover-states, productpagina achtergronden. Fris en open.</p>
     </div>
     <div class="usage-card">
-      <div class="usage-dot" style="background:#A8B5A2;"></div>
-      <h4>Sage Mist</h4>
-      <p>Secondaire campagnes, lente/zomer content, rustpunt naast de warme tinten.</p>
+      <div class="usage-dot" style="background:#7BA690;"></div>
+      <h4>Sage</h4>
+      <p>Merkkleur voor UI-elementen, iconen, secundaire knoppen. Het groene hart van Huddi.</p>
     </div>
     <div class="usage-card">
-      <div class="usage-dot" style="background:#D4B5A8;"></div>
-      <h4>Blush Dusk</h4>
-      <p>Seizoenscampagnes (herfst/winter), warmtefunctie, cadeaumarketing.</p>
+      <div class="usage-dot" style="background:#3E6B50;"></div>
+      <h4>Forest</h4>
+      <p>Diepte, donkere secties, zware koppen. Geeft het merk gewicht en vertrouwen.</p>
     </div>
     <div class="usage-card">
-      <div class="usage-dot" style="background:#4A7A70;"></div>
-      <h4>Verdigris — CTA Primair</h4>
-      <p>Hoofdknop, primaire actie, "Bestel nu". Springt uit het aardpalet zonder te schreeuwen.</p>
+      <div class="usage-dot" style="background:#6E8EA4;"></div>
+      <h4>Dusty Blue — Anker</h4>
+      <p>Vertrouwen, professionaliteit. Gebruik spaarzaam — geeft het merk een volwassen toon.</p>
     </div>
     <div class="usage-card">
-      <div class="usage-dot" style="background:#C4860A;"></div>
-      <h4>Amber — CTA Secundair</h4>
-      <p>Secondaire actie, highlights, seizoensbanners, urgentie-elementen. Het "gouden uur" gevoel.</p>
+      <div class="usage-dot" style="background:#9B8DBF;"></div>
+      <h4>Magic — CTA Primair ✦</h4>
+      <p>Hoofdknop, "Ontdek Huddi", primaire actie. Dit is het vleugje magie dat het merk onderscheidt.</p>
+    </div>
+    <div class="usage-card">
+      <div class="usage-dot" style="background:#CFC15A;"></div>
+      <h4>Spark — CTA Secundair</h4>
+      <p>Seizoensacties, urgentie, highlights. Warm en energiek — de vonk die aanzet tot actie.</p>
+    </div>
+    <div class="usage-card">
+      <div class="usage-dot" style="background:#E59178;"></div>
+      <h4>Toutch — Accent</h4>
+      <p>Warmtefunctie, cadeaumarketing, herfst/winter campagnes. Menselijk en aanrakend.</p>
+    </div>
+    <div class="usage-card" style="background:#F0EDE6;">
+      <div style="display:flex; gap:8px; margin-bottom:16px;">
+        <div style="width:20px;height:20px;border-radius:50%;background:#3498db;"></div>
+        <div style="width:20px;height:20px;border-radius:50%;background:#e74c3c;"></div>
+        <div style="width:20px;height:20px;border-radius:50%;background:#ff6b35;"></div>
+      </div>
+      <h4 style="color:var(--taupe)">Vermijd</h4>
+      <p>Koud blauw, fel rood, neon. Breekt het rustgevende merkgevoel.</p>
     </div>
   </div>
 </section>
 
 <!-- ══ MAGIE ═══════════════════════════════════════════════ -->
-<section style="background: var(--dark); padding: 100px 60px;">
-  <div class="section-label" style="color: var(--clay);">01b — Het vleugje magie</div>
-  <h2 style="color: var(--sand); margin-bottom: 16px;">Onverwacht, maar precies goed.</h2>
-  <p style="color: rgba(245,240,235,0.5); font-size:16px; font-weight:300; max-width:640px; margin-bottom:60px; line-height:1.7;">Het aardpalet is de wereld van Huddi — warm, rustig, thuis. De CTA-kleuren zijn het moment dat iets vraagt om actie. Ze vallen op, maar breken niets. Ze voelen alsof ze er altijd al hadden moeten zijn.</p>
+<section style="background:#2F3E4A; padding:100px 60px;">
+  <div class="section-label" style="color:#9B8DBF;">01b — Het vleugje magie</div>
+  <h2 style="color:#F0EDE6; margin-bottom:16px;">Toutch. Magic. Spark.</h2>
+  <p style="color:rgba(240,237,230,0.55); font-size:16px; font-weight:300; max-width:640px; margin-bottom:60px; line-height:1.7;">De groenfamilie is de rustgevende wereld van Huddi. De drie accenten zijn het moment dat het merk tot leven komt. Elk heeft een eigen rol — maar samen zorgen ze voor het gevoel dat je zocht: <em style="color:#9B8DBF;">net iets prettiger dan de echte wereld.</em></p>
 
   <!-- Button demos -->
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; max-width:900px; margin-bottom:64px;">
 
-    <div style="background:var(--cream); border-radius:20px; padding:40px;">
-      <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--taupe); margin-bottom:24px;">Op lichte achtergrond</p>
+    <div style="background:#F0EDE6; border-radius:20px; padding:40px;">
+      <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#978880; margin-bottom:24px;">Op lichte achtergrond</p>
       <div style="display:flex; flex-direction:column; gap:14px;">
-        <button style="background:#4A7A70; color:#fff; border:none; border-radius:50px; padding:16px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left; letter-spacing:0.3px;">Ontdek Huddi →</button>
-        <button style="background:#C4860A; color:#fff; border:none; border-radius:50px; padding:16px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left; letter-spacing:0.3px;">Bestel voor Sinterklaas →</button>
-        <button style="background:transparent; color:#4A7A70; border:2px solid #4A7A70; border-radius:50px; padding:14px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left;">Meer over Huddi</button>
+        <button style="background:#9B8DBF; color:#fff; border:none; border-radius:50px; padding:16px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left;">✦ Ontdek Huddi</button>
+        <button style="background:#CFC15A; color:#2F3E4A; border:none; border-radius:50px; padding:16px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left;">Bestel voor Sinterklaas →</button>
+        <button style="background:transparent; color:#3E6B50; border:2px solid #3E6B50; border-radius:50px; padding:14px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left;">Meer over Huddi</button>
       </div>
     </div>
 
-    <div style="background:#3A3330; border-radius:20px; padding:40px;">
-      <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--clay); margin-bottom:24px;">Op donkere achtergrond</p>
+    <div style="background:#3E6B50; border-radius:20px; padding:40px;">
+      <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:rgba(220,240,229,0.6); margin-bottom:24px;">Op forest achtergrond</p>
       <div style="display:flex; flex-direction:column; gap:14px;">
-        <button style="background:#4A7A70; color:#fff; border:none; border-radius:50px; padding:16px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left; letter-spacing:0.3px;">Ontdek Huddi →</button>
-        <button style="background:#C4860A; color:#fff; border:none; border-radius:50px; padding:16px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left; letter-spacing:0.3px;">Bestel voor Sinterklaas →</button>
-        <button style="background:transparent; color:rgba(245,240,235,0.7); border:2px solid rgba(245,240,235,0.25); border-radius:50px; padding:14px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left;">Meer over Huddi</button>
+        <button style="background:#9B8DBF; color:#fff; border:none; border-radius:50px; padding:16px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left;">✦ Ontdek Huddi</button>
+        <button style="background:#CFC15A; color:#2F3E4A; border:none; border-radius:50px; padding:16px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left;">Bestel voor Sinterklaas →</button>
+        <button style="background:transparent; color:rgba(240,237,230,0.8); border:2px solid rgba(240,237,230,0.3); border-radius:50px; padding:14px 32px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; text-align:left;">Meer over Huddi</button>
       </div>
     </div>
 
   </div>
 
-  <!-- Magic rationale -->
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:900px;">
-    <div style="background:rgba(74,122,112,0.15); border-left:3px solid #4A7A70; border-radius:0 12px 12px 0; padding:32px;">
-      <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#4A7A70; margin-bottom:12px;">Verdigris — Waarom magie?</p>
-      <p style="font-size:13px; color:rgba(245,240,235,0.65); line-height:1.8;">Als oud koper dat door weer en wind zijn kleur heeft gekregen. Warm maar onverwacht. Geen enkel concurrerend merk zit in deze kleurruimte. Het voelt diep, organisch en net iets verrassender dan je verwacht — precies het gevoel dat Huddi wil oproepen.</p>
+  <!-- Drie accenten uitgelegd -->
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; max-width:900px;">
+    <div style="background:rgba(229,145,120,0.15); border-left:3px solid #E59178; border-radius:0 12px 12px 0; padding:28px;">
+      <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#E59178; margin-bottom:10px;">Toutch</p>
+      <p style="font-size:13px; color:rgba(240,237,230,0.65); line-height:1.7;">Warmte, aanraking, menselijkheid. Gebruikt bij de verwarmingsfunctie, cadeaumomenten en content over comfort.</p>
     </div>
-    <div style="background:rgba(196,134,10,0.15); border-left:3px solid #C4860A; border-radius:0 12px 12px 0; padding:32px;">
-      <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#C4860A; margin-bottom:12px;">Amber — Waarom magie?</p>
-      <p style="font-size:13px; color:rgba(245,240,235,0.65); line-height:1.8;">Het gouden uur in een kleur. Warm, rijk en urgent zonder agressief te zijn. Past perfect bij de verwarmingsfunctie van Huddi en bij campagnemoment zoals Sinterklaas en Kerst. Het accent dat de rest van het palet doet opleven.</p>
+    <div style="background:rgba(155,141,191,0.15); border-left:3px solid #9B8DBF; border-radius:0 12px 12px 0; padding:28px;">
+      <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#9B8DBF; margin-bottom:10px;">Magic ✦</p>
+      <p style="font-size:13px; color:rgba(240,237,230,0.65); line-height:1.7;">Het vleugje verwondering. Hoofdknop, primaire CTA. Het moment dat het merk iets meer voelt dan verwacht.</p>
+    </div>
+    <div style="background:rgba(207,193,90,0.15); border-left:3px solid #CFC15A; border-radius:0 12px 12px 0; padding:28px;">
+      <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#CFC15A; margin-bottom:10px;">Spark</p>
+      <p style="font-size:13px; color:rgba(240,237,230,0.65); line-height:1.7;">Energie en urgentie. Seizoensacties, highlights, het moment dat iets even opvalt. Warm goud, nooit schreeuwend.</p>
     </div>
   </div>
 
@@ -1845,10 +1889,14 @@
 </div>
 
 <!-- ══ CLOSER ═════════════════════════════════════════════ -->
-<div class="closer">
-  <div class="tagline">Een wereld die net iets prettiger voelt dan de echte wereld.</div>
-  <div class="sub">Dat is Huddi. Niet wat je nodig hebt — maar wat je wilt.</div>
-  <div class="footer-meta">Max — Marketing Agent Xtended &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; Design Direction v1.0</div>
+<div class="closer" style="background:#3E6B50;">
+  <div style="font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:rgba(220,240,229,0.5); margin-bottom:24px;">Zacht van buiten. Sterk van binnen.</div>
+  <div class="tagline" style="color:#F0EDE6;">Een wereld die net iets prettiger voelt dan de echte wereld.</div>
+  <div class="sub" style="color:rgba(220,240,229,0.65);">Dat is Huddi. Niet wat je nodig hebt — maar wat je wilt.</div>
+  <div style="margin-bottom:40px;">
+    <span style="display:inline-block; background:#9B8DBF; color:#fff; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; padding:14px 36px; border-radius:50px; letter-spacing:0.3px;">✦ Ontdek Huddi</span>
+  </div>
+  <div class="footer-meta" style="color:rgba(220,240,229,0.3);">Max — Marketing Agent Xtended &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; Design Direction v1.0</div>
 </div>
 
 </body>
