@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta Ads Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0f11;--bg2:#18181c;--bg3:#222228;--bg4:#2a2a32;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#f0eff4;--text2:#9997a8;--text3:#5c5a6e;
+  --blue:#1877F2;--blue-dim:rgba(24,119,242,0.15);
+  --green:#22c55e;--green-dim:rgba(34,197,94,0.12);
+  --amber:#f59e0b;--amber-dim:rgba(245,158,11,0.12);
+  --red:#ef4444;--red-dim:rgba(239,68,68,0.12);
+  --purple:#a78bfa;--purple-dim:rgba(167,139,250,0.12);
+  --r:10px;--rl:16px;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;line-height:1.5}
+.app{display:flex;min-height:100vh}
+
+/* Sidebar */
+.sidebar{width:224px;background:var(--bg2);border-right:1px solid var(--border);padding:20px 0;position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;z-index:100;overflow-y:auto}
+.logo{padding:0 18px 20px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.logo-mark{width:34px;height:34px;background:var(--blue);border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.logo-mark svg{width:18px;height:18px;fill:#fff}
+.logo-name{font-size:15px;font-weight:600}
+.logo-sub{font-size:11px;color:var(--text3);margin-top:1px}
+.nav-section{padding:0 10px;margin-bottom:6px}
+.nav-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);padding:0 8px;margin-bottom:5px;margin-top:10px}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r);cursor:pointer;color:var(--text2);font-size:13px;font-weight:400;transition:all .15s;border:none;background:none;width:100%;text-align:left;font-family:'DM Sans',sans-serif}
+.nav-item:hover{background:var(--bg3);color:var(--text)}
+.nav-item.active{background:var(--blue-dim);color:var(--blue);font-weight:500}
+.nav-item svg{width:15px;height:15px;flex-shrink:0}
+.sidebar-footer{margin-top:auto;padding:14px 16px;border-top:1px solid var(--border)}
+.account-chip{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:10px 12px}
+.account-chip select{background:none;border:none;color:var(--text2);font-size:12px;width:100%;cursor:pointer;font-family:'DM Sans',sans-serif;outline:none}
+.account-chip select option{background:var(--bg2)}
+.conn-dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;margin-right:5px}
+
+/* Main */
+.main{margin-left:224px;flex:1;padding:28px 32px;max-width:1200px}
+.page-header{margin-bottom:24px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.page-header-left .page-title{font-size:21px;font-weight:600}
+.page-header-left .page-sub{font-size:13px;color:var(--text2);margin-top:3px}
+
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:18px;transition:border-color .2s}
+.stat-card:hover{border-color:var(--border2)}
+.stat-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.stat-icon svg{width:15px;height:15px}
+.stat-icon.blue{background:var(--blue-dim);color:var(--blue)}
+.stat-icon.green{background:var(--green-dim);color:var(--green)}
+.stat-icon.amber{background:var(--amber-dim);color:var(--amber)}
+.stat-icon.purple{background:var(--purple-dim);color:var(--purple)}
+.stat-label{font-size:11px;color:var(--text2);margin-bottom:5px}
+.stat-value{font-size:24px;font-weight:600;font-family:'DM Mono',monospace}
+
+/* Panels */
+.panel{display:none}
+.panel.active{display:block;animation:fadeUp .2s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+/* Cards */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:16px}
+.card-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.card-title{font-size:14px;font-weight:500}
+.card-body{padding:18px}
+
+/* Tables */
+.table{width:100%;border-collapse:collapse}
+.table th{padding:9px 16px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);font-weight:500;border-bottom:1px solid var(--border);white-space:nowrap}
+.table td{padding:12px 16px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text)}
+.table tr:last-child td{border-bottom:none}
+.table tbody tr:hover td{background:var(--bg3)}
+.table td.mono{font-family:'DM Mono',monospace;font-size:12px}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500}
+.badge::before{content:'';width:5px;height:5px;border-radius:50%}
+.badge.active{background:var(--green-dim);color:var(--green)}.badge.active::before{background:var(--green)}
+.badge.paused{background:var(--amber-dim);color:var(--amber)}.badge.paused::before{background:var(--amber)}
+.badge.inactive,.badge.archived{background:var(--red-dim);color:var(--red)}.badge.inactive::before,.badge.archived::before{background:var(--red)}
+
+/* Toggle */
+.toggle{width:38px;height:22px;border-radius:11px;border:none;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0}
+.toggle.on{background:var(--green)}.toggle.off{background:var(--bg4);border:1px solid var(--border2)}
+.toggle::after{content:'';position:absolute;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s}
+.toggle.on::after{left:19px}.toggle.off::after{left:2px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--r);font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all .15s;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.btn svg{width:13px;height:13px}
+.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:#1565d8}
+.btn-ghost{background:var(--bg3);color:var(--text2);border:1px solid var(--border)}.btn-ghost:hover{color:var(--text);border-color:var(--border2)}
+.btn-purple{background:var(--purple-dim);color:var(--purple);border:1px solid rgba(167,139,250,.2)}.btn-purple:hover{background:rgba(167,139,250,.2)}
+.btn-green{background:var(--green-dim);color:var(--green);border:1px solid rgba(34,197,94,.2)}.btn-green:hover{background:rgba(34,197,94,.2)}
+.btn-amber{background:var(--amber-dim);color:var(--amber);border:1px solid rgba(245,158,11,.2)}.btn-amber:hover{background:rgba(245,158,11,.2)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+
+/* Forms */
+.form-grid{display:grid;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.form-group label{display:block;font-size:12px;font-weight:500;color:var(--text2);margin-bottom:5px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:9px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;transition:border-color .15s}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--purple)}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--text3)}
+.form-group textarea{resize:vertical;min-height:85px;line-height:1.6}
+.form-group select option{background:var(--bg2)}
+
+/* AI output */
+.ai-output{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:16px;font-size:13px;line-height:1.8;color:var(--text2);white-space:pre-wrap;min-height:60px}
+.ai-output strong{color:var(--purple);font-weight:500}
+
+/* Leads */
+.lead-row{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border);transition:background .1s}
+.lead-row:last-child{border-bottom:none}
+.lead-row:hover{background:var(--bg3)}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--purple-dim);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0}
+.lead-name{font-weight:500;font-size:13px}
+.lead-meta{font-size:12px;color:var(--text2);margin-top:1px}
+.lead-date{font-size:11px;color:var(--text3);margin-left:auto;font-family:'DM Mono',monospace}
+
+/* Tabs */
+.tabs{display:flex;gap:3px;border-bottom:1px solid var(--border);margin-bottom:18px}
+.tab-btn{padding:8px 14px;font-size:13px;cursor:pointer;border-bottom:2px solid transparent;color:var(--text2);background:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif;transition:all .15s}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--purple);border-bottom-color:var(--purple);font-weight:500}
+.tab-panel{display:none}.tab-panel.active{display:block}
+
+/* Preset pills */
+.pill-row{display:flex;gap:6px}
+.pill{padding:5px 11px;border-radius:20px;font-size:12px;cursor:pointer;background:var(--bg3);border:1px solid var(--border);color:var(--text2);transition:all .15s}
+.pill.active{background:var(--purple-dim);border-color:rgba(167,139,250,.3);color:var(--purple)}
+
+/* Obj tag */
+.obj-tag{display:inline-block;padding:2px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace}
+
+/* Info box */
+.info-box{background:var(--purple-dim);border:1px solid rgba(167,139,250,.2);border-radius:var(--r);padding:12px 14px;font-size:13px;color:var(--purple);margin-bottom:14px;line-height:1.6}
+.warn-box{background:var(--amber-dim);border:1px solid rgba(245,158,11,.2);border-radius:var(--r);padding:12px 14px;font-size:13px;color:var(--amber);margin-bottom:14px}
+
+/* Loading & error */
+.loading{padding:36px;text-align:center;color:var(--text3);font-size:13px}
+.spinner{width:22px;height:22px;border:2px solid var(--border2);border-top-color:var(--purple);border-radius:50%;margin:0 auto 10px;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.error{padding:12px 14px;background:var(--red-dim);border:1px solid rgba(239,68,68,.2);border-radius:var(--r);color:var(--red);font-size:13px;margin-bottom:14px}
+
+/* Section gap */
+.gap{margin-top:16px}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* Grid 2col */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ── Sidebar ─────────────────────────────────────────── -->
+<aside class="sidebar">
+  <div class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1 13H9V9h2v6zm4 0h-2V9h2v6z"/></svg>
+    </div>
+    <div class="logo-name">Meta Ads</div>
+    <div class="logo-sub">AI Dashboard</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Overzicht</div>
+    <button class="nav-item active" onclick="nav('dashboard')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Dashboard
+    </button>
+    <button class="nav-item" onclick="nav('campaigns')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+      Campagnes
+    </button>
+    <button class="nav-item" onclick="nav('performance')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Performance
+    </button>
+    <button class="nav-item" onclick="nav('leads')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"/></svg>
+      Leads
+    </button>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">AI Tools</div>
+    <button class="nav-item" onclick="nav('ad-maker')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      Advertentie maken
+    </button>
+    <button class="nav-item" onclick="nav('analyse')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>
+      AI Analyse
+    </button>
+    <button class="nav-item" onclick="nav('rapport')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Maandrapport
+    </button>
+    <button class="nav-item" onclick="nav('doelgroep')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      Doelgroep advies
+    </button>
+    <button class="nav-item" onclick="nav('budget')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      Budget optimalisatie
+    </button>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="account-chip">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px"><span class="conn-dot"></span>Account</div>
+      <select id="account-select" onchange="switchAccount()"><option>Laden...</option></select>
+    </div>
+    <div style="display:flex;gap:6px;margin-top:10px">
+      <button onclick="document.getElementById('token-modal').style.display='flex'" class="btn btn-ghost" style="flex:1;font-size:11px;justify-content:center;padding:7px 8px" title="Meta token vernieuwen">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Token
+      </button>
+      <button onclick="logout()" class="btn btn-ghost" style="flex:1;font-size:11px;justify-content:center;padding:7px 8px">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Uitloggen
+      </button>
+    </div>
+  </div>
+</aside>
+
+<!-- ── Main ───────────────────────────────────────────── -->
+<main class="main">
+
+<!-- Dashboard -->
+<div id="panel-dashboard" class="panel active">
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="page-title">Dashboard</div>
+      <div class="page-sub">Maandoverzicht — <span id="dash-month"></span></div>
+    </div>
+    <button class="btn btn-ghost" onclick="loadDashboard()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+      Vernieuwen
+    </button>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="stat-label">Actieve campagnes</div><div class="stat-value" id="s-camps">—</div></div>
+    <div class="stat-card"><div class="stat-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><div class="stat-label">Besteed deze maand</div><div class="stat-value" id="s-spend">—</div></div>
+    <div class="stat-card"><div class="stat-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="stat-label">Impressies</div><div class="stat-value" id="s-impr">—</div></div>
+    <div class="stat-card"><div class="stat-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M10 17l5-5-5-5M13.8 12H3"/></svg></div><div class="stat-label">Klikken</div><div class="stat-value" id="s-clicks">—</div></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><span class="card-title">Recente campagnes</span><button class="btn btn-ghost" onclick="nav('campaigns')">Alles bekijken</button></div>
+    <div id="dash-camps"><div class="loading"><div class="spinner"></div>Laden...</div></div>
+  </div>
+</div>
+
+<!-- Campagnes -->
+<div id="panel-campaigns" class="panel">
+  <div class="page-header">
+    <div class="page-header-left"><div class="page-title">Campagnes</div><div class="page-sub">Bekijk en beheer al je campagnes</div></div>
+    <button class="btn btn-ghost" onclick="loadCampaigns()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Vernieuwen</button>
+  </div>
+  <div class="card">
+    <div class="card-header"><span class="card-title">Alle campagnes</span></div>
+    <div id="campaigns-table"><div class="loading"><div class="spinner"></div>Laden...</div></div>
+  </div>
+</div>
+
+<!-- Performance -->
+<div id="panel-performance" class="panel">
+  <div class="page-header">
+    <div class="page-header-left"><div class="page-title">Performance</div><div class="page-sub">Statistieken per campagne</div></div>
+    <div class="pill-row" id="preset-pills">
+      <span class="pill active" onclick="setPreset('last_7d',this)">7 dagen</span>
+      <span class="pill" onclick="setPreset('last_30d',this)">30 dagen</span>
+      <span class="pill" onclick="setPreset('this_month',this)">Deze maand</span>
+      <span class="pill" onclick="setPreset('last_quarter',this)">Kwartaal</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><span class="card-title">Resultaten per campagne</span></div>
+    <div id="perf-table"><div class="loading"><div class="spinner"></div>Laden...</div></div>
+  </div>
+</div>
+
+<!-- Leads -->
+<div id="panel-leads" class="panel">
+  <div class="page-header"><div class="page-header-left"><div class="page-title">Leads</div><div class="page-sub">Ingevulde formulieren en contactgegevens</div></div></div>
+  <div id="leads-content"><div class="loading"><div class="spinner"></div>Laden...</div></div>
+</div>
+
+<!-- Advertentie maker -->
+<div id="panel-ad-maker" class="panel">
+  <div class="page-header"><div class="page-header-left"><div class="page-title">Advertentie maken</div><div class="page-sub">Genereer en verbeter advertentieteksten met Claude AI</div></div></div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('tab-generate','ad-tabs')">Nieuwe advertentie</button>
+    <button class="tab-btn" onclick="showTab('tab-improve','ad-tabs')">Advertentie verbeteren</button>
+  </div>
+
+  <div id="tab-generate" class="tab-panel active">
+    <div class="card">
+      <div class="card-header"><span class="card-title">Nieuwe advertentietekst genereren</span></div>
+      <div class="card-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Wat promoot je? *</label>
+            <textarea id="ad-brief" placeholder="Beschrijf je product, dienst of aanbieding. Bijv: Wij zijn een marketingbureau in Friesland dat MKB-bedrijven helpt met Meta advertenties. Promoot onze gratis strategie sessie."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Doelstelling</label>
+              <select id="ad-objective">
+                <option>Bereik</option><option>Websiteverkeer</option><option>Leads genereren</option>
+                <option>Conversies</option><option>Merkbekendheid</option><option>Engagement</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Toon</label>
+              <select id="ad-tone">
+                <option>Professioneel maar toegankelijk</option><option>Urgent en actiegericht</option>
+                <option>Vriendelijk en persoonlijk</option><option>Zakelijk en betrouwbaar</option>
+                <option>Enthousiast en energiek</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Dagbudget (€)</label>
+              <input type="number" id="ad-budget" placeholder="25" min="1">
+            </div>
+            <div class="form-group">
+              <label>Doelgroep leeftijd</label>
+              <input type="text" id="ad-age" placeholder="bijv. 30-55">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Platform focus</label>
+            <select id="ad-platform">
+              <option>Facebook & Instagram</option><option>Facebook alleen</option>
+              <option>Instagram alleen</option><option>Instagram Stories</option>
+            </select>
+          </div>
+          <button class="btn btn-purple" id="gen-btn" onclick="generateAd()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            Genereer met Claude AI
+          </button>
+          <div id="ad-result-wrap" style="display:none">
+            <label style="font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bottom:7px">Gegenereerde advertentietekst</label>
+            <div class="ai-output" id="ad-result"></div>
+            <div class="btn-row">
+              <button class="btn btn-ghost" onclick="generateAd()">Opnieuw genereren</button>
+              <button class="btn btn-ghost" onclick="copyText('ad-result')">Kopiëren</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-improve" class="tab-panel">
+    <div class="card">
+      <div class="card-header"><span class="card-title">Bestaande advertentie verbeteren</span></div>
+      <div class="card-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Huidige advertentietekst</label>
+            <textarea id="improve-text" placeholder="Plak hier je huidige advertentietekst..."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Huidige performance (optioneel)</label>
+              <input type="text" id="improve-perf" placeholder="bijv. CTR 0.8%, CPC €1.20">
+            </div>
+            <div class="form-group">
+              <label>Verbeterdoel</label>
+              <select id="improve-goal">
+                <option>Hogere CTR</option><option>Lagere CPC</option>
+                <option>Meer leads</option><option>Meer conversies</option><option>Meer bereik</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn-purple" id="improve-btn" onclick="improveAd()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            Verbeter met Claude AI
+          </button>
+          <div id="improve-result-wrap" style="display:none">
+            <div class="ai-output" id="improve-result"></div>
+            <div class="btn-row">
+              <button class="btn btn-ghost" onclick="copyText('improve-result')">Kopiëren</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AI Analyse -->
+<div id="panel-analyse" class="panel">
+  <div class="page-header"><div class="page-header-left"><div class="page-title">AI Analyse</div><div class="page-sub">Claude analyseert je campagnes en geeft concrete aanbevelingen</div></div></div>
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Campagne analyse</span>
+      <div class="pill-row">
+        <span class="pill active" id="analyse-preset-label" onclick="setAnalysePreset('last_7d',this)">7 dagen</span>
+        <span class="pill" onclick="setAnalysePreset('last_30d',this)">30 dagen</span>
+        <span class="pill" onclick="setAnalysePreset('this_month',this)">Deze maand</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="info-box">Claude analyseert al je campagnedata en geeft je specifieke, actionable aanbevelingen.</div>
+      <button class="btn btn-purple" id="analyse-btn" onclick="analysePerformance()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Analyseer campagnes
+      </button>
+      <div id="analyse-result" style="display:none;margin-top:14px">
+        <div class="ai-output" id="analyse-output"></div>
+        <div class="btn-row"><button class="btn btn-ghost" onclick="copyText('analyse-output')">Kopiëren</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Maandrapport -->
+<div id="panel-rapport" class="panel">
+  <div class="page-header"><div class="page-header-left"><div class="page-title">Maandrapport</div><div class="page-sub">Genereer een professioneel rapport van je advertentieprestaties</div></div></div>
+  <div class="card">
+    <div class="card-header"><span class="card-title">Rapport genereren</span></div>
+    <div class="card-body">
+      <div class="form-grid">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Periode</label>
+            <select id="rapport-preset">
+              <option value="this_month">Deze maand</option>
+              <option value="last_month">Vorige maand</option>
+              <option value="last_30d">Laatste 30 dagen</option>
+              <option value="last_quarter">Kwartaal</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Naam voor rapport</label>
+            <input type="text" id="rapport-name" placeholder="bijv. ICEO — Mei 2026">
+          </div>
+        </div>
+        <button class="btn btn-purple" id="rapport-btn" onclick="generateReport()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Rapport genereren
+        </button>
+        <div id="rapport-result" style="display:none">
+          <div class="ai-output" id="rapport-output"></div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" onclick="copyText('rapport-output')">Kopiëren</button>
+            <button class="btn btn-ghost" onclick="downloadReport()">Download als .txt</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Doelgroep advies -->
+<div id="panel-doelgroep" class="panel">
+  <div class="page-header"><div class="page-header-left"><div class="page-title">Doelgroep advies</div><div class="page-sub">Claude geeft targeting suggesties op basis van jouw product en data</div></div></div>
+  <div class="card">
+    <div class="card-header"><span class="card-title">Doelgroep analyseren</span></div>
+    <div class="card-body">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Wat verkoop/lever je? *</label>
+          <textarea id="dg-product" placeholder="Beschrijf je product of dienst en voor wie het bedoeld is..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Huidige resultaten (optioneel)</label>
+          <input type="text" id="dg-perf" placeholder="bijv. CTR 1.2%, bereik 5.000, CPC €0.80">
+        </div>
+        <button class="btn btn-purple" id="dg-btn" onclick="getAudienceSuggestions()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          Doelgroep advies genereren
+        </button>
+        <div id="dg-result" style="display:none">
+          <div class="ai-output" id="dg-output"></div>
+          <div class="btn-row"><button class="btn btn-ghost" onclick="copyText('dg-output')">Kopiëren</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Budget optimalisatie -->
+<div id="panel-budget" class="panel">
+  <div class="page-header"><div class="page-header-left"><div class="page-title">Budget optimalisatie</div><div class="page-sub">Waar zet je je budget het slimst in?</div></div></div>
+  <div class="card">
+    <div class="card-header"><span class="card-title">Budget advies</span></div>
+    <div class="card-body">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Totaal maandbudget (€) — optioneel</label>
+          <input type="number" id="budget-total" placeholder="bijv. 500">
+        </div>
+        <div class="info-box">Claude analyseert je huidige campagnes en geeft concreet advies over waar je meer of minder budget naartoe moet.</div>
+        <button class="btn btn-purple" id="budget-btn" onclick="getBudgetAdvice()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          Budget advies genereren
+        </button>
+        <div id="budget-result" style="display:none">
+          <div class="ai-output" id="budget-output"></div>
+          <div class="btn-row"><button class="btn btn-ghost" onclick="copyText('budget-output')">Kopiëren</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<!-- Login overlay -->
+<div id="login-overlay" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center">
+  <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rl);padding:40px;width:340px;text-align:center">
+    <div style="width:48px;height:48px;background:var(--blue-dim);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+    </div>
+    <div style="font-size:18px;font-weight:600;margin-bottom:6px">Meta Ads Dashboard</div>
+    <div style="font-size:13px;color:var(--text2);margin-bottom:24px">Voer je wachtwoord in om door te gaan</div>
+    <input id="login-pw" type="password" placeholder="Wachtwoord" style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);padding:10px 14px;color:var(--text);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:12px" onkeydown="if(event.key==='Enter')doLogin()">
+    <div id="login-err" style="color:var(--red);font-size:12px;margin-bottom:12px;display:none">Verkeerd wachtwoord</div>
+    <button onclick="doLogin()" class="btn btn-primary" style="width:100%;justify-content:center">Inloggen</button>
+  </div>
+</div>
+
+<!-- Token vernieuwen modal -->
+<div id="token-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9998;align-items:center;justify-content:center">
+  <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rl);padding:32px;width:460px">
+    <div style="font-size:16px;font-weight:600;margin-bottom:6px">Meta token vernieuwen</div>
+    <div style="font-size:13px;color:var(--text2);margin-bottom:20px">Haal een nieuw token op via <strong>developers.facebook.com/tools/explorer</strong> en plak het hieronder. Het token werkt direct — stel het ook in als omgevingsvariabele op Render zodat het na herstart bewaard blijft.</div>
+    <textarea id="new-token-input" placeholder="EAAVNZCe..." style="width:100%;height:90px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);padding:10px;color:var(--text);font-size:12px;font-family:'DM Mono',monospace;resize:vertical;outline:none;margin-bottom:12px"></textarea>
+    <div id="token-msg" style="font-size:12px;margin-bottom:12px;display:none"></div>
+    <div style="display:flex;gap:8px">
+      <button onclick="saveNewToken()" class="btn btn-primary">Opslaan</button>
+      <button onclick="document.getElementById('token-modal').style.display='none'" class="btn btn-ghost">Annuleren</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentAccount = '';
+let currentPreset = 'last_7d';
+let currentAnalysePreset = 'last_7d';
+let allCampaigns = [];
+let accountName = '';
+let authToken = localStorage.getItem('meta_auth_token') || '';
+
+window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('dash-month').textContent = new Date().toLocaleDateString('nl-NL',{month:'long',year:'numeric'});
+  if (authToken) {
+    document.getElementById('login-overlay').style.display = 'none';
+    loadAccounts();
+  } else {
+    document.getElementById('login-overlay').style.display = 'flex';
+  }
+});
+
+async function doLogin() {
+  const pw = document.getElementById('login-pw').value;
+  const err = document.getElementById('login-err');
+  err.style.display = 'none';
+  try {
+    const res = await fetch('/api/auth/login', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({password:pw}) });
+    const data = await res.json();
+    if (!res.ok) { err.style.display = 'block'; return; }
+    authToken = data.token;
+    localStorage.setItem('meta_auth_token', authToken);
+    document.getElementById('login-overlay').style.display = 'none';
+    loadAccounts();
+  } catch(e) { err.style.display = 'block'; }
+}
+
+function logout() {
+  authToken = '';
+  localStorage.removeItem('meta_auth_token');
+  document.getElementById('login-overlay').style.display = 'flex';
+  document.getElementById('login-pw').value = '';
+}
+
+async function saveNewToken() {
+  const token = document.getElementById('new-token-input').value.trim();
+  const msg = document.getElementById('token-msg');
+  try {
+    const data = await post('/api/admin/update-token', { token });
+    msg.style.display = 'block';
+    msg.style.color = 'var(--green)';
+    msg.textContent = data.message;
+    setTimeout(() => document.getElementById('token-modal').style.display='none', 3000);
+  } catch(e) {
+    msg.style.display = 'block';
+    msg.style.color = 'var(--red)';
+    msg.textContent = e.message;
+  }
+}
+
+// ── Navigation ─────────────────────────────────────────
+const panels = ['dashboard','campaigns','performance','leads','ad-maker','analyse','rapport','doelgroep','budget'];
+function nav(name) {
+  panels.forEach(p => document.getElementById('panel-'+p)?.classList.remove('active'));
+  document.getElementById('panel-'+name)?.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const idx = ['dashboard','campaigns','performance','leads','ad-maker','analyse','rapport','doelgroep','budget'].indexOf(name);
+  document.querySelectorAll('.nav-item')[idx]?.classList.add('active');
+  if (name==='campaigns') loadCampaigns();
+  if (name==='performance') loadPerformance();
+  if (name==='leads') loadLeads();
+}
+
+function showTab(id, group) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(id)?.classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+// ── Accounts ───────────────────────────────────────────
+async function loadAccounts() {
+  try {
+    const data = await api('/api/accounts');
+    const accounts = data.data || [];
+    const sel = document.getElementById('account-select');
+    sel.innerHTML = accounts.map(a => `<option value="${a.id}">${a.name}</option>`).join('');
+    if (accounts.length) { currentAccount = accounts[0].id; accountName = accounts[0].name; loadDashboard(); }
+  } catch(e) { document.getElementById('account-select').innerHTML = '<option>Fout bij laden</option>'; }
+}
+
+function switchAccount() {
+  const sel = document.getElementById('account-select');
+  currentAccount = sel.value;
+  accountName = sel.options[sel.selectedIndex].text;
+  loadDashboard();
+}
+
+// ── Dashboard ──────────────────────────────────────────
+async function loadDashboard() {
+  try {
+    const [stats, camps] = await Promise.all([
+      api(`/api/accounts/${currentAccount}/stats`),
+      api(`/api/accounts/${currentAccount}/insights?preset=this_month`)
+    ]);
+    const ins = stats.insights || {};
+    document.getElementById('s-camps').textContent = stats.activeCampaigns || '0';
+    document.getElementById('s-spend').textContent = '€' + parseFloat(ins.spend||0).toFixed(0);
+    document.getElementById('s-impr').textContent = fmtNum(parseInt(ins.impressions||0));
+    document.getElementById('s-clicks').textContent = fmtNum(parseInt(ins.clicks||0));
+    allCampaigns = camps.data || [];
+    renderCampTable('dash-camps', allCampaigns.slice(0,5));
+  } catch(e) {
+    document.getElementById('dash-camps').innerHTML = `<div style="padding:16px" class="error">${e.message}</div>`;
+  }
+}
+
+// ── Campaigns ──────────────────────────────────────────
+async function loadCampaigns() {
+  document.getElementById('campaigns-table').innerHTML = loading();
+  try {
+    const data = await api(`/api/accounts/${currentAccount}/campaigns`);
+    renderCampTable('campaigns-table', data.data || []);
+  } catch(e) { document.getElementById('campaigns-table').innerHTML = `<div style="padding:16px" class="error">${e.message}</div>`; }
+}
+
+function renderCampTable(elId, camps) {
+  const el = document.getElementById(elId);
+  if (!camps.length) { el.innerHTML = '<div class="loading">Geen campagnes gevonden.</div>'; return; }
+  el.innerHTML = `<table class="table"><thead><tr><th>Naam</th><th>Status</th><th>Doelstelling</th><th>Budget</th><th>Aan/Uit</th></tr></thead><tbody>${
+    camps.map(c => {
+      const active = c.effective_status === 'ACTIVE';
+      const paused = c.effective_status === 'PAUSED';
+      const cls = active ? 'active' : paused ? 'paused' : 'inactive';
+      const budget = c.daily_budget ? '€'+(parseInt(c.daily_budget)/100).toFixed(0)+'/dag' : c.lifetime_budget ? '€'+(parseInt(c.lifetime_budget)/100).toFixed(0) : '—';
+      return `<tr>
+        <td style="font-weight:500;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.name}">${c.name}</td>
+        <td><span class="badge ${cls}">${c.effective_status}</span></td>
+        <td><span class="obj-tag">${(c.objective||'').replace(/_/g,' ')}</span></td>
+        <td class="mono">${budget}</td>
+        <td><button class="toggle ${active?'on':'off'}" id="tog-${c.id}" onclick="toggleCamp('${c.id}',${active})"></button></td>
+      </tr>`;
+    }).join('')
+  }</tbody></table>`;
+}
+
+async function toggleCamp(id, isActive) {
+  const btn = document.getElementById('tog-'+id);
+  btn.disabled = true;
+  try {
+    await fetch(`/api/campaigns/${id}/toggle`, { method:'POST', headers:{'Content-Type':'application/json','x-auth-token': authToken}, body: JSON.stringify({status: isActive?'PAUSED':'ACTIVE'}) });
+    btn.className = 'toggle '+(isActive?'off':'on');
+    btn.onclick = () => toggleCamp(id, !isActive);
+  } catch(e) { alert('Fout: '+e.message); }
+  btn.disabled = false;
+}
+
+// ── Performance ────────────────────────────────────────
+function setPreset(preset, el) {
+  currentPreset = preset;
+  document.querySelectorAll('#preset-pills .pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  loadPerformance();
+}
+
+async function loadPerformance() {
+  document.getElementById('perf-table').innerHTML = loading();
+  try {
+    const data = await api(`/api/accounts/${currentAccount}/insights?preset=${currentPreset}`);
+    const camps = data.data || [];
+    if (!camps.length) { document.getElementById('perf-table').innerHTML = '<div class="loading">Geen data.</div>'; return; }
+    document.getElementById('perf-table').innerHTML = `<table class="table"><thead><tr><th>Campagne</th><th>Bereik</th><th>Impressies</th><th>Klikken</th><th>CTR</th><th>CPC</th><th>Besteed</th></tr></thead><tbody>${
+      camps.map(c => {
+        const ins = c.insights?.data?.[0] || {};
+        return `<tr>
+          <td style="font-weight:500;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${c.name}</td>
+          <td class="mono">${fmtNum(parseInt(ins.reach||0))}</td>
+          <td class="mono">${fmtNum(parseInt(ins.impressions||0))}</td>
+          <td class="mono">${fmtNum(parseInt(ins.clicks||0))}</td>
+          <td class="mono">${ins.ctr ? parseFloat(ins.ctr).toFixed(2)+'%' : '—'}</td>
+          <td class="mono">${ins.cpc ? '€'+parseFloat(ins.cpc).toFixed(2) : '—'}</td>
+          <td class="mono">${ins.spend ? '€'+parseFloat(ins.spend).toFixed(2) : '—'}</td>
+        </tr>`;
+      }).join('')
+    }</tbody></table>`;
+  } catch(e) { document.getElementById('perf-table').innerHTML = `<div style="padding:16px" class="error">${e.message}</div>`; }
+}
+
+// ── Leads ──────────────────────────────────────────────
+async function loadLeads() {
+  document.getElementById('leads-content').innerHTML = loading();
+  try {
+    const data = await api(`/api/accounts/${currentAccount}/leadforms`);
+    const forms = data.data || [];
+    if (!forms.length) { document.getElementById('leads-content').innerHTML = '<div class="loading">Geen lead formulieren.</div>'; return; }
+    document.getElementById('leads-content').innerHTML = forms.map(f => `
+      <div class="card">
+        <div class="card-header">
+          <div><div class="card-title">${f.name}</div><div style="font-size:12px;color:var(--text3);margin-top:2px;font-family:'DM Mono',monospace">${f.leads_count||0} leads</div></div>
+          <button class="btn btn-ghost" onclick="loadFormLeads('${f.id}','fl-${f.id}')">Leads laden</button>
+        </div>
+        <div id="fl-${f.id}"></div>
+      </div>`).join('');
+  } catch(e) { document.getElementById('leads-content').innerHTML = `<div class="error">${e.message}</div>`; }
+}
+
+async function loadFormLeads(formId, elId) {
+  const el = document.getElementById(elId);
+  el.innerHTML = loading();
+  try {
+    const data = await api(`/api/leadforms/${formId}/leads`);
+    const leads = data.data || [];
+    if (!leads.length) { el.innerHTML = '<div style="padding:14px;color:var(--text3);font-size:13px">Geen leads.</div>'; return; }
+    el.innerHTML = leads.map(l => {
+      const f = {}; (l.field_data||[]).forEach(x => f[x.name]=x.values?.[0]||'');
+      const name = f.full_name||f.first_name||f.name||'Onbekend';
+      const info = [f.email, f.phone_number||f.phone].filter(Boolean).join(' · ') || 'Geen extra info';
+      const initials = name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+      return `<div class="lead-row"><div class="avatar">${initials}</div><div><div class="lead-name">${name}</div><div class="lead-meta">${info}</div></div><div class="lead-date">${new Date(l.created_time).toLocaleDateString('nl-NL')}</div></div>`;
+    }).join('');
+  } catch(e) { el.innerHTML = `<div style="padding:14px" class="error">${e.message}</div>`; }
+}
+
+// ── AI: Generate ad ────────────────────────────────────
+async function generateAd() {
+  if (!document.getElementById('ad-brief').value.trim()) { alert('Vul een omschrijving in.'); return; }
+  const btn = document.getElementById('gen-btn');
+  setLoading(btn, 'Genereren...');
+  document.getElementById('ad-result-wrap').style.display = 'block';
+  document.getElementById('ad-result').textContent = 'Claude schrijft je advertentie...';
+  try {
+    const d = await post('/api/generate-ad', {
+      brief: document.getElementById('ad-brief').value,
+      objective: document.getElementById('ad-objective').value,
+      tone: document.getElementById('ad-tone').value,
+      budget: document.getElementById('ad-budget').value,
+      targetAge: document.getElementById('ad-age').value,
+      platform: document.getElementById('ad-platform').value
+    });
+    document.getElementById('ad-result').innerHTML = fmt(d.result);
+  } catch(e) { document.getElementById('ad-result').textContent = 'Fout: '+e.message; }
+  resetBtn(btn, 'Genereer met Claude AI');
+}
+
+// ── AI: Improve ad ─────────────────────────────────────
+async function improveAd() {
+  if (!document.getElementById('improve-text').value.trim()) { alert('Vul een advertentietekst in.'); return; }
+  const btn = document.getElementById('improve-btn');
+  setLoading(btn, 'Verbeteren...');
+  document.getElementById('improve-result-wrap').style.display = 'block';
+  document.getElementById('improve-result').textContent = 'Claude verbetert je advertentie...';
+  try {
+    const d = await post('/api/improve-ad', {
+      adText: document.getElementById('improve-text').value,
+      performance: document.getElementById('improve-perf').value,
+      goal: document.getElementById('improve-goal').value
+    });
+    document.getElementById('improve-result').innerHTML = fmt(d.result);
+  } catch(e) { document.getElementById('improve-result').textContent = 'Fout: '+e.message; }
+  resetBtn(btn, 'Verbeter met Claude AI');
+}
+
+// ── AI: Analyse ────────────────────────────────────────
+function setAnalysePreset(preset, el) {
+  currentAnalysePreset = preset;
+  document.querySelectorAll('#panel-analyse .pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+}
+
+async function analysePerformance() {
+  const btn = document.getElementById('analyse-btn');
+  setLoading(btn, 'Analyseren...');
+  document.getElementById('analyse-result').style.display = 'block';
+  document.getElementById('analyse-output').textContent = 'Claude analyseert je campagnes...';
+  try {
+    const campsData = await api(`/api/accounts/${currentAccount}/insights?preset=${currentAnalysePreset}`);
+    const d = await post('/api/analyse-performance', { campaigns: campsData.data||[], preset: currentAnalysePreset });
+    document.getElementById('analyse-output').innerHTML = fmt(d.result);
+  } catch(e) { document.getElementById('analyse-output').textContent = 'Fout: '+e.message; }
+  resetBtn(btn, 'Analyseer campagnes');
+}
+
+// ── AI: Rapport ────────────────────────────────────────
+async function generateReport() {
+  const btn = document.getElementById('rapport-btn');
+  const preset = document.getElementById('rapport-preset').value;
+  const name = document.getElementById('rapport-name').value || accountName;
+  setLoading(btn, 'Rapport genereren...');
+  document.getElementById('rapport-result').style.display = 'block';
+  document.getElementById('rapport-output').textContent = 'Claude schrijft je rapport...';
+  try {
+    const [statsData, campsData] = await Promise.all([
+      api(`/api/accounts/${currentAccount}/stats`),
+      api(`/api/accounts/${currentAccount}/insights?preset=${preset}`)
+    ]);
+    const stats = { ...statsData.insights, activeCampaigns: statsData.activeCampaigns };
+    const d = await post('/api/generate-report', {
+      stats, campaigns: campsData.data||[], accountName: name,
+      month: new Date().toLocaleDateString('nl-NL',{month:'long',year:'numeric'})
+    });
+    document.getElementById('rapport-output').innerHTML = fmt(d.result);
+  } catch(e) { document.getElementById('rapport-output').textContent = 'Fout: '+e.message; }
+  resetBtn(btn, 'Rapport genereren');
+}
+
+function downloadReport() {
+  const text = document.getElementById('rapport-output').innerText;
+  const blob = new Blob([text], {type:'text/plain'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'rapport-'+new Date().toISOString().slice(0,10)+'.txt'; a.click();
+}
+
+// ── AI: Doelgroep ──────────────────────────────────────
+async function getAudienceSuggestions() {
+  if (!document.getElementById('dg-product').value.trim()) { alert('Beschrijf je product.'); return; }
+  const btn = document.getElementById('dg-btn');
+  setLoading(btn, 'Analyseren...');
+  document.getElementById('dg-result').style.display = 'block';
+  document.getElementById('dg-output').textContent = 'Claude denkt na over je doelgroep...';
+  try {
+    const d = await post('/api/audience-suggestions', {
+      product: document.getElementById('dg-product').value,
+      currentPerformance: document.getElementById('dg-perf').value
+    });
+    document.getElementById('dg-output').innerHTML = fmt(d.result);
+  } catch(e) { document.getElementById('dg-output').textContent = 'Fout: '+e.message; }
+  resetBtn(btn, 'Doelgroep advies genereren');
+}
+
+// ── AI: Budget ─────────────────────────────────────────
+async function getBudgetAdvice() {
+  const btn = document.getElementById('budget-btn');
+  setLoading(btn, 'Analyseren...');
+  document.getElementById('budget-result').style.display = 'block';
+  document.getElementById('budget-output').textContent = 'Claude analyseert je budgetverdeling...';
+  try {
+    const campsData = await api(`/api/accounts/${currentAccount}/insights?preset=last_30d`);
+    const d = await post('/api/budget-advice', {
+      campaigns: campsData.data||[],
+      totalBudget: document.getElementById('budget-total').value
+    });
+    document.getElementById('budget-output').innerHTML = fmt(d.result);
+  } catch(e) { document.getElementById('budget-output').textContent = 'Fout: '+e.message; }
+  resetBtn(btn, 'Budget advies genereren');
+}
+
+// ── Helpers ────────────────────────────────────────────
+async function api(path) {
+  const res = await fetch(path, { headers:{'x-auth-token': authToken} });
+  if (res.status === 401) { logout(); throw new Error('Sessie verlopen — log opnieuw in'); }
+  const data = await res.json();
+  if (data.error) throw new Error(data.error);
+  return data;
+}
+
+async function post(path, body) {
+  const res = await fetch(path, { method:'POST', headers:{'Content-Type':'application/json','x-auth-token': authToken}, body:JSON.stringify(body) });
+  if (res.status === 401) { logout(); throw new Error('Sessie verlopen — log opnieuw in'); }
+  const data = await res.json();
+  if (data.error) throw new Error(data.error);
+  return data;
+}
+
+function fmtNum(n) {
+  if (n>=1000000) return (n/1000000).toFixed(1)+'M';
+  if (n>=1000) return (n/1000).toFixed(1)+'k';
+  return n.toString();
+}
+
+function fmt(text) {
+  return (text||'').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+}
+
+function loading() {
+  return '<div class="loading"><div class="spinner"></div>Laden...</div>';
+}
+
+function setLoading(btn, text) {
+  btn.disabled = true;
+  btn.dataset.orig = btn.innerHTML;
+  btn.innerHTML = `<div style="width:13px;height:13px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite"></div>${text}`;
+}
+
+function resetBtn(btn, text) {
+  btn.disabled = false;
+  btn.innerHTML = btn.dataset.orig || text;
+}
+
+function copyText(id) {
+  navigator.clipboard.writeText(document.getElementById(id).innerText)
+    .then(() => { const b = event.target; const o = b.textContent; b.textContent = 'Gekopieerd!'; setTimeout(() => b.textContent = o, 1500); });
+}
+</script>
+</body>
+</html>
