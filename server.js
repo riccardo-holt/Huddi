@@ -67,14 +67,16 @@ async function claudeFetch(prompt, systemPrompt = '', maxTokens = 1500) {
   return data.content?.[0]?.text || '';
 }
 
-// ── Admin: update Meta token without redeploying ──────────────────────────
+// ── Admin: update Meta token ──────────────────────────────────────────────
+// In serverless environments (Vercel) in-memory changes don't persist —
+// update META_ACCESS_TOKEN in the Vercel dashboard environment variables instead.
 app.post('/api/admin/update-token', requireAuth, (req, res) => {
   const { token } = req.body;
   if (!token || token.length < 20) {
     return res.status(400).json({ error: 'Ongeldig token' });
   }
   META_TOKEN = token;
-  res.json({ ok: true, message: 'Meta token bijgewerkt (geldig tot server herstart — stel ook in als omgevingsvariabele op Render)' });
+  res.json({ ok: true, message: 'Token bijgewerkt voor deze sessie. Vergeet niet ook de omgevingsvariabele META_ACCESS_TOKEN bij te werken in het Vercel dashboard — anders is het token weg na de volgende deploy.' });
 });
 
 // ── Meta routes ───────────────────────────────────────────────────────────
@@ -220,7 +222,11 @@ app.get('/api/health', async (req, res) => {
   catch (e) { res.status(400).json({ ok: false, error: e.message }); }
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
+// Local development only — Vercel serves public/ via its own CDN
+if (process.env.NODE_ENV !== 'production') {
+  app.use(express.static(path.join(__dirname, 'public')));
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => console.log(`Meta Ads Dashboard running on http://localhost:${PORT}`));
+}
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Meta Ads Dashboard running on port ${PORT}`));
+module.exports = app;
